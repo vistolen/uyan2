@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Scroll çubuklarını tamamen yok eder */
+    background-color: black; /* Varsa boşluk siyah görünsün */
+}
+
+#canvas1 {
+    display: block; /* Satır içi boşluğunu engeller */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Viewport width */
+    height: 100vh; /* Viewport height */
+}
+#layer1, #layer2deneme, #layer4,#devilslayerson, #playerfalanxyz33iki12, #anglertry, #angler2v122, #lucky33, #projectile, #gears, #hivewhale333, #droneyeni22, #smokeExplosion2, #fireExplosion2, #droneyeni2, #moon22, #shield2, #fireball222, #stalker2d22, #razordeneme {
+    display: none;
+}
+/* --- OYUN MENÜSÜ STİLLERİ --- */
+#gameMenu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    /* Fontun ismini UI sınıfındakiyle (Bangers) aynı yaptım */
+    font-family: 'Bangers', cursive; 
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 50px;
+    border: 3px solid #ff0000;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+    /* Seçilmeyi engelleyelim ki buton tıklaması rahat olsun */
+    user-select: none;
+}
+
+#wakeUpCall {
+    font-size: 60px;
+    color: #ff0000;
+    margin: 20px 0;
+    letter-spacing: 15px;
+    text-transform: uppercase;
+    animation: pulse 1.5s infinite;
+}
+
+#startButton {
+    padding: 15px 50px;
+    font-size: 30px;
+    background: #ff0000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-family: 'Bangers', cursive;
+    transition: 0.3s ease;
+}
+
+#startButton:hover {
+    background: #b30000;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #ff0000;
+}
+
+/* "UYAN" Yazısı İçin Nabız Efekti */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.05); opacity: 1; text-shadow: 0 0 20px red; }
+    100% { transform: scale(1); opacity: 0.6; }
+}
+#creditsContainer {
+    position: fixed; /* absolute yerine fixed yaparak ekranın üstüne sabitliyoruz */
+    top: 100%;
+    left: 0;
+    width: 100%; /* Tüm genişliği kaplasın */
+    text-align: center;
+    color: #ff0000;
+    font-family: 'Bangers', cursive;
+    z-index: 999; /* En üstte göründüğünden emin olalım */
+    pointer-events: none;
+    background: transparent; /* Arka planı siyah yapma ki canvas görünsün */
+}
+.credit-line {
+    margin-bottom: 30px;
+    font-size: 30px;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 10px black;
+}
+
+@keyframes rollCredits {
+    0% { top: 100%; }
+    100% { top: -150%; }
+}
+/* =================================================================
+   ALEVLİ VE HAREKETLİ YAZI EFEKTİ (Burning Text)
+   ================================================================= */
+.burning-text {
+    font-size: 5rem;
+    color: #ff3333;
+    text-shadow: 0 0 4px #fff, 0 -5px 4px #ff3, 2px -10px 6px #f80, -2px -15px 11px #f40;
+    animation: burn 1.5s infinite alternate ease-in-out;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+}
+
+@keyframes burn {
+    0% {
+        text-shadow: 0 0 4px #fff, 0 -5px 4px #ff3, 2px -10px 6px #f80, -2px -15px 11px #f40;
+        transform: scale(1);
+    }
+    100% {
+        text-shadow: 0 0 6px #fff, 0 -2px 6px #ff5, -3px -8px 9px #f90, 3px -18px 14px #f30;
+        transform: scale(1.02) skewX(-1deg);
+    }
+}
+
+/* =================================================================
+   KONTROLLER PANELDEN GÖRÜNÜMÜ
+   ================================================================= */
+.controls-container {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #ff3333;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: 300px;
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.3);
+}
+
+.control-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    font-family: monospace;
+}
+
+.key {
+    background: #222;
+    color: #ff3333;
+    border: 1px solid #ff3333;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    box-shadow: 0 3px 0 #800;
+}
+
+.space-key {
+    padding: 5px 25px;
+    letter-spacing: 2px;
+}
+
+.control-desc {
+    color: #fff;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    color: #bbb;
+    font-style: italic;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
